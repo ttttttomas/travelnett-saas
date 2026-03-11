@@ -5,3 +5,43 @@
   --color-secondary: #6005F7;
 }
 
+.fondo {
+  position: relative;
+  overflow: hidden;
+}
+
+.fondo::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("/bg-mobile.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  filter: blur(10px);
+  transform: scale(1.1);
+  opacity: 0.35;
+}
+
+/* Login: sin blur, solo opacidad baja */
+.fondo:has(.login-page)::before {
+  filter: none;
+  transform: none;
+  opacity: 0.2;
+}
+
+button {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .fondo::before {
+    background-image: url("/bg-desktop.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: none;
+    transform: none;
+    opacity: 0.15;
+  }
+}

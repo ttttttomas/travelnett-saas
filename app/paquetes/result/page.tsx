@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import ToggleSalidas from "@/app/components/ToggleSalidas";
 
-export default function ResultPage() {
+export default function ResultPaquetesPage() {
   const searchParams = useSearchParams();
   console.log(searchParams.get("destino"));
   return (
