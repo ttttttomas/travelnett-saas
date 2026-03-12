@@ -3,14 +3,50 @@ import Container from "@/app/components/Container";
 import ArrowLeft from "@/app/components/icons/ArrowLeft";
 import AddVioleta from "@/app/components/icons/AddVioleta";
 import ArrowUpDown from "@/app/components/icons/ArrowUpDown";
-import Copy from "@/app/components/icons/salidas/Copy";
-import Rooming from "@/app/components/icons/salidas/Rooming";
-import Update from "@/app/components/icons/salidas/Update";
-import Delete from "@/app/components/icons/salidas/Delete";
+import SalidaCard from "@/app/components/SalidaCard";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import ToggleSalidas from "@/app/components/ToggleSalidas";
 import { Suspense } from "react";
+
+const salidas = [
+  {
+    id: 1,
+    destino: "Termas de Rio Hondo",
+    fecha: "22/06/2025",
+    categorias: [
+      { tipo: "Economy", total: 20, disponible: 20 },
+      { tipo: "Business", total: 5, disponible: 5 },
+    ],
+  },
+  {
+    id: 2,
+    destino: "Termas de Rio Hondo",
+    fecha: "22/06/2025",
+    categorias: [
+      { tipo: "Economy", total: 20, disponible: 20 },
+      { tipo: "Business", total: 5, disponible: 5 },
+    ],
+  },
+  {
+    id: 3,
+    destino: "Termas de Rio Hondo",
+    fecha: "22/06/2025",
+    categorias: [
+      { tipo: "Economy", total: 20, disponible: 20 },
+      { tipo: "Business", total: 5, disponible: 5 },
+    ],
+  },
+  {
+    id: 4,
+    destino: "Termas de Rio Hondo",
+    fecha: "22/06/2025",
+    categorias: [
+      { tipo: "Economy", total: 20, disponible: 20 },
+      { tipo: "Business", total: 5, disponible: 5 },
+    ],
+  },
+];
 
 function ResultContent() {
   const searchParams = useSearchParams();
@@ -37,55 +73,16 @@ function ResultContent() {
           <ArrowUpDown />
         </div>
       </section>
-      <section className="flex flex-col  gap-5">
-        <div className="flex items-center gap-5">
-          <div className="bg-primary flex-1 text-white justify-between rounded-lg px-2 text-sm py-3 flex gap-2">
-            <p>Termas de Rio Hondo</p>
-            <p>22/06/2025</p>
-          </div>
-          <div className="flex items-center gap-x-1 justify-center">
-            <Copy id={1} />
-            <Rooming id={1} />
-            <Update id={1} />
-            <Delete id={1} />
-          </div>
-        </div>
-        <div className="flex items-center gap-5">
-          <div className="bg-primary flex-1 text-white justify-between rounded-lg px-2 text-sm py-3 flex gap-2">
-            <p>Termas de Rio Hondo</p>
-            <p>22/06/2025</p>
-          </div>
-          <div className="flex items-center gap-x-1 justify-center">
-            <Copy id={2} />
-            <Rooming id={2} />
-            <Update id={2} />
-            <Delete id={2} />
-          </div>
-        </div>
-        <div className="flex items-center gap-5">
-          <div className="bg-primary flex-1 text-white justify-between rounded-lg px-2 text-sm py-3 flex gap-2">
-            <p>Termas de Rio Hondo</p>
-            <p>22/06/2025</p>
-          </div>
-          <div className="flex items-center gap-x-1 justify-center">
-            <Copy id={3} />
-            <Rooming id={3} />
-            <Update id={3} />
-            <Delete id={3} />
-          </div>
-        </div>
-        <div className="flex items-center gap-5">
-          <div className="bg-primary flex-1 text-white justify-between rounded-lg px-2 text-sm py-3 flex gap-2">
-            <p>Termas de Rio Hondo</p>
-            <p>22/06/2025</p>
-          </div>
-          <div className="flex items-center gap-x-1 justify-center">
-            <Copy id={4} />
-            <Rooming id={4} />
-            <Update id={4} />
-            <Delete id={4} />
-          </div>
-        </div>
+      <section className="flex flex-col gap-5">
+        {salidas.map((salida) => (
+          <SalidaCard
+            key={salida.id}
+            id={salida.id}
+            destino={salida.destino}
+            fecha={salida.fecha}
+            categorias={salida.categorias}
+          />
+        ))}
       </section>
     </Container>
   );
