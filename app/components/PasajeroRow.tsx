@@ -4,16 +4,20 @@ import { useState, useRef, useEffect } from "react";
 interface PasajeroRowProps {
   numero: number;
   nombre: string;
-  localidad: string;
+  ascenso: string;
   butaca: string;
+  telefono: string;
+  reserva: string;
+  cliente: string;
+  edad: string;
+  hotel: string;
 }
 
 export default function PasajeroRow({
-  numero,
-  nombre,
-  localidad,
-  butaca,
-}: PasajeroRowProps) {
+  pasajero
+}: {
+  pasajero: PasajeroRowProps;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
@@ -43,10 +47,15 @@ export default function PasajeroRow({
           </svg>
         </button>
         <div className="flex-1 bg-[#D9DFF5] flex font-semibold border border-[#3DADFF] mx-auto rounded-t-md px-2 py-2.5 items-center justify-center text-xs text-black">
-          <span className="px-2 flex-1 text-end">{nombre}</span>
-          <span className="px-2 border-l border-black">{localidad}</span>
-          <span className="px-2 border-l border-black">{butaca}</span>
-          <span className="pl-2 border-l border-black">📄</span>
+          <span className="px-2 flex-1 text-end">{pasajero.nombre}</span>
+          <span className="px-2 border-l border-black md:block hidden">{pasajero.reserva}</span>
+          <span className="px-2 border-l border-black md:block hidden">{pasajero.cliente}</span>
+          <span className="px-2 border-l border-black">{pasajero.ascenso}</span>
+          <span className="px-2 border-l border-black md:block hidden">{pasajero.hotel}</span>
+          <span className="px-2 border-l border-black md:block hidden">{pasajero.edad}</span>
+          <span className="px-2 border-l border-black md:block hidden">{pasajero.telefono}</span>
+          <span className="px-2 border-l border-black">{pasajero.butaca}</span>
+          <span className="pl-2 border-l cursor-pointer  border-black">📄</span>
         </div>
       </div>
 
@@ -59,13 +68,13 @@ export default function PasajeroRow({
         className="overflow-hidden transition-all duration-300 ease-in-out">
         <div className="flex items-center gap-2 pl-5 pt-1.5">
           <span className="text-xs text-primary font-semibold w-5 text-center">
-            {numero}
+            {pasajero.numero}
           </span>
           <div className="flex-1 bg-blue-50/70 rounded-lg px-3 py-2 flex items-center text-xs text-gray-400">
-            <span className="flex-1">{nombre}</span>
-            <span className="px-2 border-l border-gray-200">{localidad}</span>
-            <span className="px-2 border-l border-gray-200">{butaca}</span>
-            <span className="pl-2 border-l border-gray-200">
+            <span className="flex-1">{pasajero.nombre}</span>
+            <span className="px-2 border-l border-gray-200">{pasajero.ascenso}</span>
+            <span className="px-2 border-l border-gray-200">{pasajero.butaca}</span>
+            <button className="pl-2 border-l border-gray-200">
               <svg
                 width="12"
                 height="12"
@@ -77,7 +86,7 @@ export default function PasajeroRow({
                   fill="#D1D5DB"
                 />
               </svg>
-            </span>
+            </button>
           </div>
         </div>
       </div>

@@ -1,9 +1,18 @@
+'use client'
 import Link from "next/link";
 import Container from "@/app/components/Container";
 import ArrowLeft from "@/app/components/icons/ArrowLeft";
 import ToggleActiveFilters from "@/app/components/ToggleActiveFilters";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function AgregarSalidaPage() {
+  const searchParams = useSearchParams();
+  const r = useRouter();
+  const handleBack = () => {
+    r.back();
+  };
+  console.log(searchParams.get("id"));
   return (
     <Container>
       <Link
@@ -12,10 +21,10 @@ export default function AgregarSalidaPage() {
         <ArrowLeft />
         <h1 className="font-bold">Volver al menú</h1>
       </Link>
-      <Link href={"/"} className="flex items-center my-3 justify-start gap-3">
+      <button onClick={handleBack} className="flex items-center my-3 justify-start gap-3">
         {/* <ArrowLeft /> */}
         <h2 className="font-semibold text-secondary underline">Cancelar</h2>
-      </Link>
+      </button>
       <form className="flex flex-col my-5 gap-3">
         <h2 className="text-black text-center font-medium">Agregar salida</h2>
         <select

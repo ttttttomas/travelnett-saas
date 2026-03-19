@@ -16,80 +16,146 @@ const pasajeros = [
   {
     numero: 1,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 2,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
+
   },
   {
     numero: 3,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 4,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 5,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 6,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 7,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 8,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 9,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 10,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 11,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 12,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
   {
     numero: 13,
     nombre: "Demarco Valentin",
-    localidad: "Lanús",
+    reserva: 'MDQ',
+    cliente: "Mio Turismo",
+    ascenso: "Lanús",
+    hotel: "Garden",
+    edad: 'ADL',
     butaca: "Semicama",
+    telefono: "1169694995",
   },
 ];
 
@@ -119,13 +185,15 @@ export default function SalidasIDPage() {
       <section className="flex flex-col gap-3">
         <Link
           href={"/dashboard"}
-          className="flex items-center justify-start gap-3">
+          className="flex items-center justify-start gap-3"
+        >
           <ArrowLeft />
           <h1 className="font-bold">Volver al menú</h1>
         </Link>
         <button
           onClick={handleBack}
-          className="flex items-center cursor-pointer justify-start gap-3">
+          className="flex items-center cursor-pointer justify-start gap-3"
+        >
           <ArrowLeft color="#6005F7" />
           <h1 className="font-semibold text-secondary">Volver a Salidas</h1>
         </button>
@@ -136,31 +204,45 @@ export default function SalidasIDPage() {
         {/* Imprimir */}
         <Link
           href={"/salidas/lista/1/butacas"}
-          className="p-1.5"
-          title="Butacas">
+           className="p-1.5 flex items-center gap-2 font-semibold"
+          title="Butacas"
+        >
           <Butaca />
+          <p className="text-xs text-black md:block hidden">Butacas</p>
         </Link>
         {/* Configuración */}
-        <button className="p-1.5" title="Configuración">
+        <button
+          className="p-1.5 flex items-center gap-2 font-semibold"
+          title="Vouchers Online"
+        >
           <Subir />
+          <p className="text-xs text-black md:block hidden">Vouchers Online</p>
         </button>
         {/* Excel */}
-        <button className="p-1.5" title="Exportar Excel">
+        <button
+          className="p-1.5 flex items-center gap-2 font-semibold"
+          title="Exportar Excel"
+        >
           <Excel />
+          <p className="text-xs text-black md:block hidden">Exportar Excel</p>
         </button>
         {/* Asiento */}
         <button
-          className="p-1.5 cursor-pointer"
+          className="p-1.5 flex items-center gap-2 font-semibold"
           title="Horarios"
-          onClick={() => setShowRelojModal(true)}>
+          onClick={() => setShowRelojModal(true)}
+        >
           <Reloj />
+          <p className="text-xs text-black md:block hidden">Horarios</p>
         </button>
         {/* Equipaje */}
         <button
-          className="p-1.5 cursor-pointer"
-          title="Equipaje"
-          onClick={() => setShowHotelModal(true)}>
+          className="p-1.5 flex items-center gap-2 font-semibold"
+          title="Hoteles"
+          onClick={() => setShowHotelModal(true)}
+        >
           <Hotel />
+          <p className="text-xs text-black md:block hidden">Hoteles</p>
         </button>
         <img
           className="absolute right-10 top-23"
@@ -174,11 +256,7 @@ export default function SalidasIDPage() {
       <section className="flex flex-col justify-center items-center gap-3">
         {pasajeros.map((p) => (
           <PasajeroRow
-            key={p.numero}
-            numero={p.numero}
-            nombre={p.nombre}
-            localidad={p.localidad}
-            butaca={p.butaca}
+            pasajero={p}
           />
         ))}
       </section>
@@ -236,10 +314,12 @@ export default function SalidasIDPage() {
       {showRelojModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-          onClick={() => setShowRelojModal(false)}>
+          onClick={() => setShowRelojModal(false)}
+        >
           <div
             className="bg-primary rounded-2xl w-[90%] max-w-md max-h-[85vh] flex flex-col overflow-hidden"
-            onClick={(e) => e.stopPropagation()}>
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Logo */}
             <div className="flex justify-center pt-5 pb-3">
               <img
@@ -293,7 +373,8 @@ export default function SalidasIDPage() {
             <div className="flex justify-center gap-4 px-4 py-5">
               <button
                 onClick={() => setShowRelojModal(false)}
-                className="bg-white text-black font-semibold text-sm px-6 py-2 rounded-lg cursor-pointer border border-gray-300">
+                className="bg-white text-black font-semibold text-sm px-6 py-2 rounded-lg cursor-pointer border border-gray-300"
+              >
                 Cancelar
               </button>
               <button className="bg-secondary text-white font-semibold text-sm px-6 py-2 rounded-lg cursor-pointer">
@@ -306,10 +387,12 @@ export default function SalidasIDPage() {
       {showHotelModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-          onClick={() => setShowRelojModal(false)}>
+          onClick={() => setShowRelojModal(false)}
+        >
           <div
             className="bg-primary rounded-2xl w-[90%] max-w-md max-h-[85vh] flex flex-col overflow-hidden"
-            onClick={(e) => e.stopPropagation()}>
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Logo */}
             <div className="flex justify-center pt-5 pb-3">
               <img
@@ -330,25 +413,23 @@ export default function SalidasIDPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {[...Array(8)].map((_, i) => (
-                    <tr className="bg-gray-600 text-white">
-                      <td className="py-2 px-3">MDQ</td>
-                      <td className="py-2 px-3">
-                        <select name="hotel" id="hotel">
-                          <option value="">Garden</option>
-                          <option value="">Garden</option>
-                          <option value="">Garden</option>
-                        </select>
-                      </td>
-                      <td className="py-2 px-3">
-                        <select name="hotel" id="hotel">
-                          <option value="">MAP</option>
-                          <option value="">MAP</option>
-                          <option value="">MAP</option>
-                        </select>
-                      </td>
-                    </tr>
-                  ))}
+                  <tr className="bg-gray-600 text-white">
+                    <td className="py-2 px-3">MDQ</td>
+                    <td className="py-2 px-3">
+                      <select name="hotel" id="hotel">
+                        <option value="">Garden</option>
+                        <option value="">Garden</option>
+                        <option value="">Garden</option>
+                      </select>
+                    </td>
+                    <td className="py-2 px-3">
+                      <select name="hotel" id="hotel">
+                        <option value="">MAP</option>
+                        <option value="">MAP</option>
+                        <option value="">MAP</option>
+                      </select>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -357,7 +438,8 @@ export default function SalidasIDPage() {
             <div className="flex justify-center gap-4 px-4 py-5">
               <button
                 onClick={() => setShowHotelModal(false)}
-                className="bg-white text-black font-semibold text-sm px-6 py-2 rounded-lg cursor-pointer border border-gray-300">
+                className="bg-white text-black font-semibold text-sm px-6 py-2 rounded-lg cursor-pointer border border-gray-300"
+              >
                 Cancelar
               </button>
               <button className="bg-secondary text-white font-semibold text-sm px-6 py-2 rounded-lg cursor-pointer">

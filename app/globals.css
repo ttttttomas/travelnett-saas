@@ -3,6 +3,8 @@
 @theme {
   --color-primary: #0546F7;
   --color-secondary: #6005F7;
+  --color-bg: #D9DFF5;
+  --color-border: #3DADFF;
 }
 
 .fondo {
