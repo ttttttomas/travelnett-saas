@@ -32,43 +32,67 @@ export default function PaquetesPage() {
       <section className="flex flex-col gap-5 justify-between">
         <Link
           href={"/dashboard"}
-          className="flex items-center justify-start gap-3">
+          className="flex items-center justify-start gap-3"
+        >
           <ArrowLeft />
           <h1 className="font-bold">Volver al menú</h1>
         </Link>
-        <h2 className="text-black font-semibold">Filtros</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <h2 className="text-black font-semibold mb-5 text-center md:text-xl">
+          Filtros
+        </h2>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-3 md:gap-5 w-full max-w-3xl md:justify-start items-start mx-auto"
+        >
           <select
-            className="text-gray-500 font-medium w-full border border-gray-400 py-2 px-4 rounded-lg shadow-md shadow-gray-500"
+            className="text-gray-500 font-medium bg-[#f1f1f1] w-full border md:text-xl border-gray-400 py-2 px-4 rounded-lg shadow-md shadow-gray-500"
             name="destino"
             id="destino"
-            onChange={handleChange}>
-            <option hidden className="text-gray-200" value="">
+            onChange={handleChange}
+          >
+            <option hidden className="text-gray-200 bg-[#f1f1f1]" value="">
               Destino
             </option>
-            <option value="Termas de Rio Hondo">Termas de Rio Hondo</option>
+            <option className="bg-[#f1f1f1]" value="Termas de Rio Hondo">
+              Termas de Rio Hondo
+            </option>
           </select>
           <select
-            className="text-gray-500 font-medium w-full border border-gray-400 py-2 px-4 rounded-lg shadow-md shadow-gray-500"
+            className="text-gray-500 font-medium bg-[#f1f1f1] w-full border md:text-xl border-gray-400 py-2 px-4 rounded-lg shadow-md shadow-gray-500"
+            name="empresa"
+            id="empresa"
+            onChange={handleChange}
+          >
+            <option hidden className="text-gray-200 bg-[#f1f1f1]" value="">
+              Empresa de transporte
+            </option>
+            <option className="bg-[#f1f1f1]" value="Termas de Rio Hondo">
+              Termas de Rio Hondo
+            </option>
+          </select>
+          <select
+            className="text-gray-500 font-medium bg-[#f1f1f1] w-full border md:text-xl border-gray-400 py-2 px-4 rounded-lg shadow-md shadow-gray-500"
             name="rango"
             id="rango"
-            onChange={handleChange}>
-            <option hidden className="text-gray-200" value="">
+            onChange={handleChange}
+          >
+            <option hidden className="text-gray-200 bg-[#f1f1f1]" value="">
               Rango de fechas (Desde - Hasta)
             </option>
-            <option value="22/06/2025 - 22/06/2025">
+            <option className="bg-[#f1f1f1]" value="22/06/2025 - 22/06/2025">
               22/06/2025 - 22/06/2025
             </option>
           </select>
           <select
-            className="text-gray-500 font-medium w-full border border-gray-400 py-2 px-4 rounded-lg shadow-md shadow-gray-500"
+            className="text-gray-500 font-medium bg-[#f1f1f1] w-full border md:text-xl border-gray-400 py-2 px-4 rounded-lg shadow-md shadow-gray-500"
             name="periodo"
             id="periodo"
-            onChange={handleChange}>
-            <option hidden className="text-gray-200" value="">
+            onChange={handleChange}
+          >
+            <option hidden className="text-gray-200 bg-[#f1f1f1]" value="">
               Periodo
             </option>
-            <option value="22/06/2025 - 22/06/2025">
+            <option className="bg-[#f1f1f1]" value="22/06/2025 - 22/06/2025">
               22/06/2025 - 22/06/2025
             </option>
           </select>
