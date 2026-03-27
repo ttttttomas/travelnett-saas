@@ -13,73 +13,74 @@ export default function Parametros() {
         <ArrowLeft />
         <h1 className="font-bold">Volver al menú</h1>
       </Link>
-      <section className="my-10">
+      <section className="my-10 w-full max-w-3xl mx-auto">
         <ul className="text-white flex flex-col gap-8">
+        <h2 className="text-center text-black font-semibold text-xl">Panel</h2>
           <Link
-            href={"/salidas"}
+            href={"/parametros/transporte"}
             className="bg-primary w-full gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Salidas /> */}
             <i className="text-center">EMPRESAS DE TRANSPORTE</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/parametros/hoteles"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
             <i className="text-center">HOTELES</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/parametros/excursiones"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
             <i className="text-center">EXCURSIONES</i>
           </Link>
           <Link
-            href="/parametros"
+            href="/parametros/periodos"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Parametros /> */}
             <i className="text-center">PERÍODOS</i>
           </Link>
           <Link
-            href="/usuarios"
+            href="/parametros/destinos"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Usuarios /> */}
             <i className="text-center">DESTINOS</i>
           </Link>
           <Link
-            href="/web"
+            href="/parametros/cargas"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Web /> */}
             <i className="text-center">LUGARES DE CARGA</i>
           </Link>
           <Link
-            href="/web"
+            href="/parametros/clientes"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Web /> */}
             <i className="text-center">CLIENTES</i>
           </Link>
           <Link
-            href="/web"
+            href="/parametros/regimenes"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Web /> */}
             <i className="text-center">REGIMENES</i>
           </Link>
           <Link
-            href="/web"
+            href="/parametros/pasajeros"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Web /> */}
             <i className="text-center">PASAJEROS</i>
           </Link>
           <Link
-            href="/web"
+            href="/parametros/micros"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Web /> */}
             <i className="text-center">TIPOS DE MICRO</i>
           </Link>
         </ul>
-        <div className="flex mt-8 justify-end">
-          <img src="logo-empresa.png" alt="Logo Empresa" />
-        </div>
       </section>
+        <div className="xl:flex hidden absolute md:right-40 md:top-60 mt-8 justify-end">
+          <img src="logo-grande.png" className='size-50' alt="Logo Empresa" />
+        </div>
     </Container>
   );
 }
