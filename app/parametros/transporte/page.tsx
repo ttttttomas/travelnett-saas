@@ -1,6 +1,7 @@
 "use client";
 import Container from "@/app/components/Container";
 import ArrowLeft from "@/app/components/icons/ArrowLeft";
+import ModalLayout from "@/app/components/ModalLayout";
 import ToggleSalidas from "@/app/components/ToggleSalidas";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,23 +11,36 @@ type TipoTransporte = "aereo" | "bus" | null;
 
 export default function Transporte() {
   const r = useRouter();
+  const [modalOpenPut, setModalOpenPut] = useState(false);
+  const [modalOpenAdd, setModalOpenAdd] = useState(false);
   const [tipo, setTipo] = useState<TipoTransporte>(null);
   const [search, setSearch] = useState("");
+  const [busData, setBusData] = useState({
+    nombre: "",
+    cuit: "",
+    web: "",
+    telefono: "",
+  });
 
   const empresas = [
-    { id: 1, nombre: "Dinamar", tipo: "bus" },
-    { id: 2, nombre: "Dinamar", tipo: "bus" },
-    { id: 3, nombre: "Dinamar", tipo: "bus" },
-    { id: 4, nombre: "Dinamar", tipo: "bus" },
-    { id: 5, nombre: "Jestmar", tipo: "aereo" },
-    { id: 6, nombre: "Jestmar", tipo: "aereo" },
-    { id: 7, nombre: "Jestmar", tipo: "aereo" },
-    { id: 8, nombre: "Jestmar", tipo: "aereo" },
+    { id: 1, nombre: "Dinamar", tipo: "bus", cuit: "123456789", web: "www.google.com", telefono: "123456789" },
+    { id: 2, nombre: "Dinamar", tipo: "bus", cuit: "123456789", web: "www.google.com", telefono: "123456789" },
+    { id: 3, nombre: "Dinamar", tipo: "bus", cuit: "123456789", web: "www.google.com", telefono: "123456789" },
+    { id: 4, nombre: "Dinamar", tipo: "bus", cuit: "123456789", web: "www.google.com", telefono: "123456789" },
+    { id: 5, nombre: "Jestmar", tipo: "aereo", cuit: "123456789", web: "www.google.com", telefono: "123456789" },
+    { id: 6, nombre: "Jestmar", tipo: "aereo", cuit: "123456789", web: "www.google.com", telefono: "123456789" },
+    { id: 7, nombre: "Jestmar", tipo: "aereo", cuit: "123456789", web: "www.google.com", telefono: "123456789" },
+    { id: 8, nombre: "Jestmar", tipo: "aereo", cuit: "123456789", web: "www.google.com", telefono: "123456789" },  
   ];
 
   const empresasFiltradas = empresas
     .filter((e) => e.tipo === tipo)
     .filter((e) => e.nombre.toLowerCase().includes(search.toLowerCase()));
+
+  const handleClickPut = (bus: any) => { 
+    setModalOpenPut(true);
+    setBusData(bus);
+  };
 
   return (
     <Container>
@@ -86,7 +100,10 @@ export default function Transporte() {
           </h2>
 
           <div className="flex justify-center mb-6">
-            <button className="flex items-center gap-2  text-primary font-medium px-4 py-2 rounded-lg shadow">
+            <button
+              onClick={() => setModalOpenAdd(true)}
+              className="flex items-center gap-2  text-primary font-medium px-4 py-2 rounded-lg shadow"
+            >
               <svg
                 width="22"
                 height="22"
@@ -148,6 +165,7 @@ export default function Transporte() {
                     <div className="flex items-center gap-3">
                       {/* BOTON EDITAR */}
                       <button
+                        onClick={() => handleClickPut(empresa)}
                         title="Editar"
                         className="text-gray-600 hover:text-primary"
                       >
@@ -194,6 +212,100 @@ export default function Transporte() {
       <div className="xl:flex hidden absolute md:right-40 md:top-60 mt-8 justify-end">
         <img src="/logo-grande.png" className="size-50" alt="Logo Empresa" />
       </div>
+      {modalOpenAdd && (
+        <ModalLayout
+          setModalOpen={() => setModalOpenAdd(false)}
+          title="Agregar Empresa de Transporte"
+          svg={
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 19 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.2503 8.70825H4.75033V4.74992H14.2503M13.0628 13.4583C12.7479 13.4583 12.4458 13.3331 12.2231 13.1104C12.0004 12.8877 11.8753 12.5857 11.8753 12.2708C11.8753 11.9558 12.0004 11.6538 12.2231 11.4311C12.4458 11.2084 12.7479 11.0833 13.0628 11.0833C13.3778 11.0833 13.6798 11.2084 13.9025 11.4311C14.1252 11.6538 14.2503 11.9558 14.2503 12.2708C14.2503 12.5857 14.1252 12.8877 13.9025 13.1104C13.6798 13.3331 13.3778 13.4583 13.0628 13.4583ZM5.93783 13.4583C5.62288 13.4583 5.32084 13.3331 5.09814 13.1104C4.87544 12.8877 4.75033 12.5857 4.75033 12.2708C4.75033 11.9558 4.87544 11.6538 5.09814 11.4311C5.32084 11.2084 5.62288 11.0833 5.93783 11.0833C6.25277 11.0833 6.55482 11.2084 6.77751 11.4311C7.00021 11.6538 7.12533 11.9558 7.12533 12.2708C7.12533 12.5857 7.00021 12.8877 6.77751 13.1104C6.55482 13.3331 6.25277 13.4583 5.93783 13.4583ZM3.16699 12.6666C3.16699 13.3633 3.47574 13.9887 3.95866 14.4241V15.8333C3.95866 16.0432 4.04207 16.2446 4.19053 16.393C4.339 16.5415 4.54036 16.6249 4.75033 16.6249H5.54199C5.75196 16.6249 5.95332 16.5415 6.10178 16.393C6.25025 16.2446 6.33366 16.0432 6.33366 15.8333V15.0416H12.667V15.8333C12.667 16.0432 12.7504 16.2446 12.8989 16.393C13.0473 16.5415 13.2487 16.6249 13.4587 16.6249H14.2503C14.4603 16.6249 14.6617 16.5415 14.8101 16.393C14.9586 16.2446 15.042 16.0432 15.042 15.8333V14.4241C15.5249 13.9887 15.8337 13.3633 15.8337 12.6666V4.74992C15.8337 1.97909 12.9995 1.58325 9.50033 1.58325C6.00116 1.58325 3.16699 1.97909 3.16699 4.74992V12.6666Z"
+                fill="#F1F1F1"
+              />
+            </svg>
+          }
+        >
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col items-center gap-3">
+              <input
+                type="text"
+                placeholder="Nombre"
+                className="w-full border bg-white rounded-sm p-2 pr-4 text-black/90 font-medium shadow-sm focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="CUIT"
+                className="w-full border bg-white rounded-sm p-2 pr-4 text-black/90 font-medium shadow-sm focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Web"
+                className="w-full border bg-white rounded-sm p-2 pr-4 text-black/90 font-medium shadow-sm focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Telefono de contacto"
+                className="w-full border bg-white rounded-sm p-2 pr-4 text-black/90 font-medium shadow-sm focus:outline-none"
+              />
+            </div>
+          </div>
+        </ModalLayout>
+      )}
+      {modalOpenPut && (
+         <ModalLayout
+          setModalOpen={() => setModalOpenPut(false)}
+          title="Editar Empresa de Transporte"
+          svg={
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 19 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.2503 8.70825H4.75033V4.74992H14.2503M13.0628 13.4583C12.7479 13.4583 12.4458 13.3331 12.2231 13.1104C12.0004 12.8877 11.8753 12.5857 11.8753 12.2708C11.8753 11.9558 12.0004 11.6538 12.2231 11.4311C12.4458 11.2084 12.7479 11.0833 13.0628 11.0833C13.3778 11.0833 13.6798 11.2084 13.9025 11.4311C14.1252 11.6538 14.2503 11.9558 14.2503 12.2708C14.2503 12.5857 14.1252 12.8877 13.9025 13.1104C13.6798 13.3331 13.3778 13.4583 13.0628 13.4583ZM5.93783 13.4583C5.62288 13.4583 5.32084 13.3331 5.09814 13.1104C4.87544 12.8877 4.75033 12.5857 4.75033 12.2708C4.75033 11.9558 4.87544 11.6538 5.09814 11.4311C5.32084 11.2084 5.62288 11.0833 5.93783 11.0833C6.25277 11.0833 6.55482 11.2084 6.77751 11.4311C7.00021 11.6538 7.12533 11.9558 7.12533 12.2708C7.12533 12.5857 7.00021 12.8877 6.77751 13.1104C6.55482 13.3331 6.25277 13.4583 5.93783 13.4583ZM3.16699 12.6666C3.16699 13.3633 3.47574 13.9887 3.95866 14.4241V15.8333C3.95866 16.0432 4.04207 16.2446 4.19053 16.393C4.339 16.5415 4.54036 16.6249 4.75033 16.6249H5.54199C5.75196 16.6249 5.95332 16.5415 6.10178 16.393C6.25025 16.2446 6.33366 16.0432 6.33366 15.8333V15.0416H12.667V15.8333C12.667 16.0432 12.7504 16.2446 12.8989 16.393C13.0473 16.5415 13.2487 16.6249 13.4587 16.6249H14.2503C14.4603 16.6249 14.6617 16.5415 14.8101 16.393C14.9586 16.2446 15.042 16.0432 15.042 15.8333V14.4241C15.5249 13.9887 15.8337 13.3633 15.8337 12.6666V4.74992C15.8337 1.97909 12.9995 1.58325 9.50033 1.58325C6.00116 1.58325 3.16699 1.97909 3.16699 4.74992V12.6666Z"
+                fill="#F1F1F1"
+              />
+            </svg>
+          }
+        >
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col items-center gap-3">
+              <input
+                type="text"
+                placeholder="Nombre"
+                value={busData?.nombre}
+                className="w-full border bg-white rounded-sm p-2 pr-4 text-black/90 font-medium shadow-sm focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="CUIT"
+                value={busData?.cuit}
+                className="w-full border bg-white rounded-sm p-2 pr-4 text-black/90 font-medium shadow-sm focus:outline-none"
+              />
+              <input
+                type="text"
+                value={busData?.web}
+                placeholder="Web"
+                className="w-full border bg-white rounded-sm p-2 pr-4 text-black/90 font-medium shadow-sm focus:outline-none"
+              />
+              <input
+                type="text"
+                placeholder="Telefono de contacto"
+                value={busData?.telefono}
+                className="w-full border bg-white rounded-sm p-2 pr-4 text-black/90 font-medium shadow-sm focus:outline-none"
+              />
+            </div>
+          </div>
+        </ModalLayout>  
+      )}
     </Container>
   );
 }
