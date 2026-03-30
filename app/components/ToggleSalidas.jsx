@@ -31,7 +31,7 @@ export default function ToggleSalidas() {
         <ul
           className={`flex absolute transition-all ${
             toggle ? "opacity-100 transition-all" : "opacity-0 transition-all"
-          } duration-300 right-11 top-30 md:top-49 bg-primary z-40 rounded-lg shadow-md shadow-black/80 gap-4 p-2 text-white italic md:px-3 md:text-lg`}>
+          } duration-300 right-11 top-22 md:top-42 bg-primary z-40 rounded-lg shadow-md shadow-black/80 gap-4 p-2 text-white italic md:px-3 text-sm`}>
           <Link className="flex gap-2 items-center" href="/salidas">
             <Salidas />
             <p className="hidden md:block">Salidas</p>
@@ -55,7 +55,7 @@ export default function ToggleSalidas() {
         </ul>
       )}
       {toggle && (
-        <button className="bg-[#3DADFF] transition-all duration-300 z-10 size-4 rounded-full absolute right-8 top-32 md:top-52.5"></button>
+        <button className="bg-[#3DADFF] transition-all duration-300 z-10 size-4 rounded-full absolute right-8 top-25 md:top-45"></button>
       )}
     </>
   );
