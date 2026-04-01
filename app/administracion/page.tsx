@@ -16,37 +16,37 @@ export default function Administracion() {
       <section className="my-10">
         <ul className="text-white flex flex-col gap-8">
           <Link
-            href={"/salidas"}
+            href={"/administracion/cuentas"}
             className="bg-primary w-full gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Salidas /> */}
             <i className="text-center">CUENTAS</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/administracion/tesoro"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
             <i className="text-center">TESORO</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/administracion/pagos"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
             <i className="text-center">PAGOS</i>
           </Link>
           <Link
-            href="/parametros"
+            href="/administracion/tarjetas"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Parametros /> */}
             <i className="text-center">TARJETAS</i>
           </Link>
           <Link
-            href="/usuarios"
+            href="/administracion/cuentas-corrientes"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Usuarios /> */}
             <i className="text-center">CUENTAS CORRIENTES</i>
           </Link>
           <Link
-            href="/web"
+            href="/administracion/saldos"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Web /> */}
             <i className="text-center">SALDOS DE CLIENTES</i>

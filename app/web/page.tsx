@@ -16,40 +16,40 @@ export default function Parametros() {
       <section className="my-10">
         <ul className="text-white flex flex-col gap-8">
           <Link
-            href={"/salidas"}
+            href={"/web/reservas"}
             className="bg-primary w-full gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Salidas /> */}
             <i className="text-center">RESERVAS</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/web/novedades"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
             <i className="text-center">NOVEDADES</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/web/formas-de-pago"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
             <i className="text-center">FORMAS DE PAGO</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/web/documentacion"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
             <i className="text-center">DOCUMENTACIÓN</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/web/cartelera"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
             <i className="text-center">CARTELERA</i>
           </Link>
           <Link
-            href="/paquetes"
+            href="/web/inicio"
             className="bg-primary gap-3 py-2 text-center px-3 rounded-lg font-medium">
             {/* <Paquetes /> */}
-            <i className="text-center">HOME</i>
+            <i className="text-center">PAGINA DE INICIO</i>
           </Link>
         </ul>
         <div className="flex mt-8 justify-end">

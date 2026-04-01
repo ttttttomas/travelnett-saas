@@ -1,13 +1,23 @@
 @import "tailwindcss";
+@tailwind utilities;
 
 @theme {
   --color-primary: #0546F7;
   --color-secondary: #6005F7;
+  --color-bg: #D9DFF5;
+  --color-border: #3DADFF;
+  --animate-infinite-scroll: infinite-scroll 25s linear infinite;
 }
 
 .fondo {
   position: relative;
   overflow-x: hidden;
+}
+
+.gradient-primary {
+  background: linear-gradient(86.79deg, #FFFFFF -57.34%, #002AE4 144.57%);
+
+
 }
 
 .fondo::before {
@@ -43,5 +53,15 @@ button {
     filter: none;
     transform: none;
     opacity: 0.15;
+  }
+}
+
+
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
