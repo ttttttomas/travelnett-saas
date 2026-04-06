@@ -13,7 +13,8 @@ services:
       - APP_ENV=production
     volumes:
       # Producción: persistir y exponer imágenes por nginx desde el host
-      - /home/iweb/saas/tranett/data/images:/home/iweb/saas/tranett/data/images
+      - /home/iweb/saas/data/images:/home/iweb/saas/data/images
+      - /home/iweb/saas/data/images/logos:/home/iweb/saas/data/images/logos
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/', timeout=3).read()"]
