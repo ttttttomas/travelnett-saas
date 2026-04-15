@@ -9,7 +9,12 @@ from datetime import date
 
 # Schemas for authentication and user management
 
-class LoginRequest(BaseModel):
+class LoginWebRequest(BaseModel):
+    email: str
+    password: str
+    iweb_client_id: Optional[str] = None
+
+class LoginSystemRequest(BaseModel):
     username: str
     password: str
     iweb_client_id: Optional[str] = None
@@ -38,10 +43,25 @@ class UserCreatePayload(BaseModel):
     phone: Optional[int] = None
     active: int = 1
 
+class ClientsCreatePayload(BaseModel):
+    name_system: Optional[str] = None
+    complete_name: Optional[str] = None
+    client_type: Optional[str] = None
+    parent_client_id: Optional[str] = None
+    dni: Optional[int] = None
+    birthday: Optional[date] = None
+    email: Optional[str] = None
+    phone: Optional[int] = None
+    payment_method: Optional[str] = None
+    commission: Optional[int] = None
+    hashed_password: Optional[str] = None
+    created_at: Optional[datetime] = None
 
 class UserCreateRequest(BaseModel):
     user: UserCreatePayload
 
+class ClientsCreateRequest(BaseModel):
+    client: ClientsCreatePayload
 
 class iWebClientCreateRequest(BaseModel):
     name: str
