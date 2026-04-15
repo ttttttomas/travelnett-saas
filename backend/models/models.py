@@ -102,7 +102,7 @@ class Clients(Base):
     iweb_client_id = Column(String(36), nullable=False)
     name_system = Column(String(255))
     complete_name = Column(String(255))
-    client_type_id = Column(String(36))
+    client_type = Column(String(36))
     parent_client_id = Column(String(36))
     dni = Column(Integer)
     birthday = Column(Date)
