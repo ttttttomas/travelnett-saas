@@ -17,13 +17,23 @@ class LoginWebRequest(BaseModel):
 class LoginSystemRequest(BaseModel):
     username: str
     password: str
-    iweb_client_id: Optional[str] = None
+    slug: Optional[str] = None
 
+class iWebClientPayload(BaseModel):
+    id: str
+    folder_id: int
+    slug: str
+    name: str
+    cuit: int
+    email: str
+    status: bool
+    logo_xl: str
+    logo_s: str
 
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
-
+    iweb_client: Optional[iWebClientPayload] = None
 
 class UserPayload(BaseModel):
     id: str
@@ -31,7 +41,6 @@ class UserPayload(BaseModel):
     name: Optional[str]
     last_name: Optional[str]
     username: str
-
 
 class UserCreatePayload(BaseModel):
     name: Optional[str] = None
@@ -74,6 +83,7 @@ class iWebClientCreateRequest(BaseModel):
 class iWebClientResponse(BaseModel):
     id: str
     folder_id: int
+    slug: str
     name: str
     cuit: int
     email: str
