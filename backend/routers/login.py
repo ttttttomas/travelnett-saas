@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from dotenv import load_dotenv
 import os
 from db.database import get_db
-from models.models import User, Clients
+from models.models import User, Clients, iWebClient
 from schemas.schemas import (
     LoginSystemRequest,
     LoginWebRequest,
@@ -29,18 +29,33 @@ def login(
     db: Session = Depends(get_db),
 ):
     """
-    Login for multi-tenant system. The username is resolved within the given iweb_client_id.
-    Example: Ruta86.
-    The iweb_client_id is required for all users except the global admin (iweb_admin) who can log in under any tenant and arrives from dinamic route.
+    Login for multi-tenant system. The username is resolved within the given iweb_client (by slug).
+    Example: ruta86 (slug).
+    The slug is required for all users except the global admin (iweb_admin) who can log in under any tenant.
     """
-    # Multi-tenant: username is resolved within the given iweb_client_id.
+    # Get iWebClient by slug
+    iweb_client = None
+    if body.slug:
+        iweb_client = db.query(iWebClient).filter(iWebClient.slug == body.slug).first()
+        if not iweb_client:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid slug",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+    
+    # Multi-tenant: username is resolved within the given iweb_client.
     # Exception: the global admin can log in under any tenant.
     if body.username == "iweb_admin":
         user = db.query(User).filter(User.username == body.username).first()
     else:
+        if not iweb_client:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Slug is required for non-admin users",
+            )
         q = db.query(User).filter(User.username == body.username)
-        if body.iweb_client_id:
-            q = q.filter(User.iweb_client_id == body.iweb_client_id)
+        q = q.filter(User.iweb_client_id == iweb_client.id)
         user = q.first()
 
     if not user or not verify_password(body.password, user.hashed_password):
@@ -56,14 +71,14 @@ def login(
             detail="Inactive user",
         )
 
-    token_iweb_client_id = user.iweb_client_id
-    if user.username == "iweb_admin" and body.iweb_client_id:
-        token_iweb_client_id = body.iweb_client_id
+    # Get the iWebClient for the token if not already loaded
+    if not iweb_client and user.iweb_client_id:
+        iweb_client = db.query(iWebClient).filter(iWebClient.id == user.iweb_client_id).first()
 
     token = create_access_token(
         {
             "sub": str(user.id),
-            "iweb_client_id": token_iweb_client_id,
+            "iweb_client_id": user.iweb_client_id,
             "username": user.username,
         }
     )
@@ -80,7 +95,21 @@ def login(
         path="/",
     )
 
-    return TokenResponse(access_token=token)
+    iweb_client_payload = None
+    if iweb_client:
+        iweb_client_payload = {
+            "id": iweb_client.id,
+            "folder_id": iweb_client.folder_id,
+            "slug": iweb_client.slug,
+            "name": iweb_client.name,
+            "cuit": iweb_client.cuit,
+            "email": iweb_client.email,
+            "status": iweb_client.status,
+            "logo_xl": iweb_client.logo_xl,
+            "logo_s": iweb_client.logo_s,
+        }
+
+    return TokenResponse(access_token=token, iweb_client=iweb_client_payload)
 
 @router.post("/login-web")
 def login_web(

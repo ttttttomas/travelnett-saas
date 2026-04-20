@@ -11,6 +11,7 @@ class iWebClient(Base):
 
     id = Column(String(36), primary_key=True)
     folder_id: Mapped[int] = mapped_column(Integer, nullable=False, unique=True)
+    slug = Column(String(255), nullable=False, unique=True)
     name = Column(String(255))
     cuit = Column(INT)
     email = Column(String(255))
