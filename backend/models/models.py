@@ -195,3 +195,16 @@ class News(Base):
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
     iweb_client_id: Mapped[str] = mapped_column(String(36), nullable=False)
     url: Mapped[str | None] = mapped_column(String(255), nullable=True)
+
+class Accounts(Base):
+    __tablename__ = "accounts"
+    
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    iweb_client_id: Mapped[str] = mapped_column(String(36), nullable=False)
+    account_title: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    titular: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    account_number: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    cuit_cuil: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    cbu_cvu: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    alias: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    active: Mapped[bool | None] = mapped_column(BOOLEAN, nullable=True)

@@ -5,9 +5,9 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from db.database import get_db
-from models.models import Flyers, iWebClient, News
+from models.models import Flyers, iWebClient, News, Accounts
 from routers.tenants import _guess_extension, _save_upload, public_tenant_asset_url, tenant_dir
-from schemas.schemas import FlyerPayload, NewsPayload
+from schemas.schemas import FlyerPayload, NewsPayload, AccountPayload
 
 router = APIRouter(prefix="/web")
 
@@ -146,6 +146,34 @@ async def create_news(
     db.refresh(new_news)
     return new_news
 
+@router.post("/create_accounts", tags=["Web"], response_model=AccountPayload)
+async def create_account(
+    iweb_client_id: str = Query(...),
+    account_title: str = Form(...),
+    titular: str = Form(...),
+    account_number: str = Form(...),
+    cuit_cuil: int = Form(...),
+    cbu_cvu: int = Form(...),
+    alias: str = Form(...),
+    active: bool = Form(...),
+    db: Session = Depends(get_db),
+):
+    tenant = _get_tenant_or_404(db, iweb_client_id)
+    new_account = Accounts(
+        id=str(uuid.uuid4()),
+        iweb_client_id=iweb_client_id,
+        account_title=account_title,
+        titular=titular,
+        account_number=account_number,
+        cuit_cuil=cuit_cuil,
+        cbu_cvu=cbu_cvu,
+        alias=alias,
+        active=active,
+    )
+    db.add(new_account)
+    db.commit()
+    db.refresh(new_account)
+    return new_account
 # --- Get ---
 
 @router.get("/get_flyers", tags=["Web"], response_model=List[FlyerPayload])
@@ -156,7 +184,9 @@ async def get_flyers(iweb_client_id: str, db: Session = Depends(get_db)):
 async def get_news(iweb_client_id: str, db: Session = Depends(get_db)):
     return db.query(News).filter(News.iweb_client_id == iweb_client_id).all()
 
-
+@router.get("/get_accounts", tags=["Web"], response_model=List[AccountPayload])
+async def get_accounts(iweb_client_id: str, db: Session = Depends(get_db)):
+    return db.query(Accounts).filter(Accounts.iweb_client_id == iweb_client_id).all()
 
 # --- Update ---
 
@@ -240,6 +270,42 @@ async def update_news(
         db.refresh(existing_news)
         return existing_news
 
+@router.put("/update_accounts", tags=["Web"], response_model=AccountPayload)
+async def update_account(   
+    iweb_client_id: str = Query(...),
+    id: str = Form(...),
+    account_title: str = Form(None),
+    titular: str = Form(None),
+    account_number: str = Form(None),
+    cuit_cuil: int = Form(None),
+    cbu_cvu: int = Form(None),
+    alias: str = Form(None),
+    active: bool = Form(None),
+    db: Session = Depends(get_db),
+):
+    existing_account = db.query(Accounts).filter(Accounts.id == id, Accounts.iweb_client_id == iweb_client_id).first()
+    if not existing_account:
+        raise HTTPException(status_code=404, detail="Account not found")
+
+    if account_title is not None:
+        existing_account.account_title = account_title
+    if titular is not None:
+        existing_account.titular = titular
+    if account_number is not None:
+        existing_account.account_number = account_number
+    if cuit_cuil is not None:
+        existing_account.cuit_cuil = cuit_cuil
+    if cbu_cvu is not None:
+        existing_account.cbu_cvu = cbu_cvu
+    if alias is not None:
+        existing_account.alias = alias
+    if active is not None:
+        existing_account.active = active
+
+    db.commit()
+    db.refresh(existing_account)
+    return existing_account
+
 # --- Delete 
 
 @router.delete("/delete_flyer/{flyer_id}", tags=["Web"])
@@ -265,3 +331,13 @@ async def delete_news(news_id: str, iweb_client_id: str, db: Session = Depends(g
     db.delete(existing_news)
     db.commit()
     return {"detail": "News deleted successfully"}
+
+@router.delete("/delete_accounts/{account_id}", tags=["Web"])
+async def delete_account(account_id: str, iweb_client_id: str, db: Session = Depends(get_db)):
+    existing_account = db.query(Accounts).filter(Accounts.id == account_id, Accounts.iweb_client_id == iweb_client_id).first()
+    if not existing_account:
+        raise HTTPException(status_code=404, detail="Account not found")
+
+    db.delete(existing_account)
+    db.commit()
+    return {"detail": "Account deleted successfully"}

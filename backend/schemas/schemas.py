@@ -318,3 +318,33 @@ class CreateNewsRequest(BaseModel):
 class UpdateNewsRequest(BaseModel):
     id: Optional[str] = None
     url: Optional[str] = None
+
+class AccountCreateRequest(BaseModel):
+    account_title: Optional[str] = None
+    titular: Optional[str] = None
+    account_number: Optional[str] = None
+    cuit_cuil: Optional[int] = None
+    cbu_cvu: Optional[int] = None
+    alias: Optional[str] = None
+    active: Optional[bool] = None
+
+class AccountPayload(BaseModel):
+    id: str
+    iweb_client_id: str
+    account_title: Optional[str] = None
+    titular: Optional[str] = None
+    account_number: Optional[str] = None
+    cuit_cuil: Optional[int] = None
+    cbu_cvu: Optional[int] = None
+    alias: Optional[str] = None
+    active: Optional[bool] = None
+
+class AccountUpdateRequest(BaseModel):
+    id: Optional[str] = None
+    account_title: Optional[str] = None
+    titular: Optional[str] = None
+    account_number: Optional[str] = None
+    cuit_cuil: Optional[int] = None
+    cbu_cvu: Optional[int] = None
+    alias: Optional[str] = None
+    active: Optional[bool] = None 
